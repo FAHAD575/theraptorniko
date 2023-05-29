@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.min.css"/ >
+	<script src="js/jquery.datetimepicker.full.min.js"></script>
+	<style type="text/css">
+		body.ocmainbody {
+		    background-color: #000000;
+		}
+		.ocmdesc p,.ocsecdesc p {
+		    color: #ffffff;
+		    font-size: 20px;
+		}
+		.ocmain ,.ocdatesecdulepage,.successsendmaildiv {
+		    max-width: 750px;
+		    margin: 0 auto;
+		}
+		.ocminputfields {
+		    display: grid;
+		    grid-template-columns: 1fr 1fr;
+		    gap: 20px 15px;
+		}
+		.ocminputfields input {
+		    padding: 10px;
+		}
+		.ocminputfields div {
+		    width: 100%;
+		    display: inline-grid;
+		}
+		.octoptionfield input {
+		    padding: 10px;
+		}
+		.octoptionfield {
+		    display: grid;
+		}
+		.ocsecdesc p {
+		    margin-top: 50px;
+		    margin-bottom: 10px;
+		}
+		.ocfnextbtn {
+		    text-align: right;
+		    margin-top: 60px;
+		}
+		.ocfpagebtn,.ocsubmainbtn {
+		    padding: 10px 50px;
+		    font-size: 16px;
+		    cursor: pointer;
+		    background-color: #685bb1;
+		    border: 0;
+		    color: #ffffff;
+		}
+		.ocdatesecdulepage {
+			display: none;
+		}
+		.successsendmaildiv {
+			display: none;
+		}
+		.ocdatepick {
+		    display: flex;
+		    justify-content: center;
+		}
+		.ocdptitle h3 {
+		    color: #ffffff;
+		    font-size: 22px;
+		    font-weight: 400;
+		}
+		.ocdptitle,.successsendmaildiv p {
+		    text-align: center;
+		    color: #685bb1;
+		    font-size: 28px;
+		    font-weight: 400;
+		}
+	</style>
+</head>
+<body class="ocmainbody">
+	<div class="ocmain">
+		<div class="ocmdesc">
+			<p>We are here to assist you! To ansure we can provide you with the best possible support, please take a moment to fill out the form below.</p>
+		</div>
+		<div class="ocminputfields">
+			<div><input type="text" name="ocsmfname" id="ocsmfname" placeholder="First Name"></div>
+			<div><input type="text" name="ocsmlname" id="ocsmlname" placeholder="Last Name"></div>
+			<div><input type="text" name="ocsmphoneno" id="ocsmphoneno" placeholder="Phone Number"></div>
+			<div><input type="email" name="ocsmemail" id="ocsmemail" placeholder="Email"></div>
+		</div>
+		<div class="ocsecdesc">
+			<p>New or Current Company/Orgnization Name (Leave blank if undecided)</p>
+		</div>
+		<div class="octoptionfield">
+			<input type="text" name="occurcomorgnaname" id="occurcomorgnaname">
+		</div>
+		<div class="ocfnextbtn">
+			<input type="submit" name="ocfpagebtn" class="ocfpagebtn" value="NEXT">
+		</div>
+	</div>
+	<div class="ocdatesecdulepage">
+		<div class="ocdptitle">
+			<h3>Schedule</h3>
+		</div>
+		<div class="ocdatepick">
+			<input id="ocdatetimepicker" type="text">
+		</div>
+		<div class="ocfnextbtn">
+			<input type="submit" name="ocsubbtn" class="ocsubmainbtn" value="SUBMIT">
+		</div>
+	</div>
+	<div class="successsendmaildiv">
+		<div><p>Thank you for you submission,and we will be in touch.</p></div>
+	</div>
+	<script type="text/javascript">
+		jQuery(document).ready(function(){
+			jQuery('.ocfpagebtn').on('click', function(){
+				//console.log('hellofomr');
+				jQuery('.ocmain').hide();
+				jQuery('.ocdatesecdulepage').show();
+				return false;
+			})
+		
+			jQuery('#ocdatetimepicker').datetimepicker({
+			  format:'d.m.Y H:i',
+			  inline:true,
+			  lang:'ru'
+			});
+			
+			jQuery('body').on('click','.ocsubmainbtn', function(){
+				var ocsmfname = jQuery('#ocsmfname').val();
+				var ocsmlname = jQuery('#ocsmlname').val();
+				var ocsmphoneno = jQuery('#ocsmphoneno').val();
+				var ocsmemail = jQuery('#ocsmemail').val();
+				var occurcomorgnaname = jQuery('#occurcomorgnaname').val();
+				var ocdatetimepicker = jQuery('#ocdatetimepicker').val();
+				console.log('sadasda');
+					jQuery.ajax({
+				        url: "ocsendmail.php",
+				        type: "post",
+				        data: {
+				            'ocsmfname': ocsmfname,
+				            'ocsmlname': ocsmlname,
+				            'ocsmphoneno': ocsmphoneno,
+				            'ocsmemail': ocsmemail,
+				            'occurcomorgnaname': occurcomorgnaname,
+				            'ocdatetimepicker': ocdatetimepicker,
+				        } ,
+			           	success: function(result){
+			            	// console.log(result);
+			            	if (result == 'true') {
+			            		jQuery('.successsendmaildiv').show();
+			            		jQuery('.ocdatesecdulepage').hide();
+			            	}
+			         	}
+				             
+				    });
+				return false;
+			})
+		})
+	</script>
+</body>
+</html>

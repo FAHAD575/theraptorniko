@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css">
+	<link href='https://fonts.googleapis.com/css?family=Space Grotesk' rel='stylesheet'>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<style>
+		html {
+    height: 1540px;
+    width: 100%;
+    box-sizing: border-box;
+    /* display: flex; */
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+    gap: 24px;
+    background-color: black;
+    border: 1px solid #5B21B6;
+    box-shadow: inset 0px 0px 36px rgba(68, 16, 147, 0.8);
+    border-radius: 4px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+		
+		body {
+			font-family: 'Space Grotesk';
+		}
+		html {
+			width: 100%;
+		}
+
+		.error_message {
+			display: none;
+			background: red;
+			height: 40px;
+			left: 40px;
+			line-height: 40px;
+			text-align: center;
+			color: #fff;
+			font-weight: 600;
+		}
+		[type=button], [type=reset], [type=submit], button {
+			background-color: #5B21B6 !important;
+			margin-bottom: 20px;
+		}
+		
+	</style>
+	<meta name="viewport" content="width=device-width">
+	<title>Rising C Suites Consultant Form</title>
+</head>
+
+<body>
+	<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+	<div class="risicsuitmain">
+		<div class="risisecform">
+			<div class="error_message">Error message here</div>
+			<h2 style="font-size:30px">We're here to assist you! To ensure we can provide you with the best possible
+				support, please take a moment to fill out the form below.</h2>
+
+
+			<form class="client_form" action="sender.php" method="post">
+
+				<div class="ocminputfields">
+					<div><input class="fname" type="text" name="fname" id="fname" placeholder="First Name" value="">
+					</div>
+					<div><input class="lname" type="text" name="lname" id="lname" placeholder="Last Name" value="">
+					</div>
+					<div><input class="PhNumber" type="text" name="PhoneNumber" id="PhoneNumber"
+							placeholder="Phone Number" oninput="formatPhoneNumber(this)"></div>
+					<div><input class="email" type="email" name="email" id="email" placeholder="Email" value=""></div>
+				</div>
+				<div class="ocsecdesc">
+					<p>New or Current Company/Organization Name (Leave blank if undecided) </p>
+				</div>
+				<div class="octoptionfield">
+					<input class="NameOrganization" type="text" name="NameOfOrganization" id="NameOfOrganization">
+				</div>
+
+				<br></br>
+
+
+				<p style="color: white; font-size: 26px; margin-bottom: 15px;line-height: 40px;" for="email"> Kindly
+					provide a brief explanation of your current business model (if your organization is already
+					established) or your business idea if it is a new venture. </p>
+
+				<textarea class="Details" required style="color: black" id="details" name="details" rows="4"
+					cols="54" placeholder="Enter here"></textarea>
+
+				<p style="color: white;font-size: 26px;margin-bottom: 15px;margin-top: 15px;line-height: 40px;">At
+					Rising C-Suites, we offer comprehensive business consulting services. We welcome the opportunity to
+					customize our approach to meet the unique needs of your organization. To help us better understand
+					your priorities, please specify any areas of focus you would like us to include in our action plan
+					or tailored services by listing them in bullet points below. *This field is required.</p>
+
+				<textarea class="WhatYouNeed" required style="color: black" id="WhatYouNeed" name="WhatYouNeed" rows="4"
+					cols="54" placeholder="Enter here."></textarea>
+
+				<br></br>
+
+				<!-- <div class="calendly-inline-widget"
+					data-url="https://calendly.com/nikocielmacario/consulting-appointment"
+					style="min-width:320px; height:660px; align: center;"></div> -->
+
+					<div class="ocminputfields">
+						<input type="date" name="date" id="ocdatetimepicker" type="text">
+						<input type="time" name="time" id="ocdatetimepicker" type="text">
+
+					</div>
+
+					<!-- <div class="ocminputfields"> -->
+						<!-- <input type="time" name="time" id="ocdatetimepicker" type="text"> -->
+
+					<!-- </div> -->
+					
+				<br></br>
+				
+
+
+
+				<label for="addComments/Concerns"> Additional Information/Comments: </label>
+				<br></br>
+				<textarea class="Additional Info" id="Additional Info" name="Additional_Info" rows="6"
+					cols="45" placeholder="Enter here.."></textarea>
+				<br></br>
+				
+				<div class="ocfnextbtn" style="margin-top: 0;">
+					<!-- <input type="submit" value="Send Email"> -->
+					<button type="submit" class="button" name="send_mail_btn">SUBMIT</button>
+				</div>
+		</div>
+		</form>
+	</div>
+	</div>
+	<script>
+		setTimeout(() => {
+
+			const calender = document.querySelectorAll("form button");
+			console.log(calender)
+		}, 5000)
+
+		if (localStorage.getItem("message") != undefined) {
+			const error = document.querySelector(".error_message");
+			error.style.display = "block";
+			error.innerHTML = localStorage.getItem("message");
+			setTimeout(() => {
+				localStorage.removeItem("message");
+				error.style.display = "none";
+
+			}, 4000)
+		}
+
+
+	</script>
+
+	<script>
+		function formatPhoneNumber(input) {
+  const phoneNumber = input.value.replace(/\D/g, ''); // Remove all non-digit characters
+  const formattedNumber = phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
+  input.value = formattedNumber;
+}
+
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+	<link href = 'https://fonts.googleapis.com/css?family=Space Grotesk' rel='stylesheet'>
+  <script src="https://cdn.tailwindcss.com"></script>
+	<style>
+		body{
+			font-family: 'Space Grotesk';
+			
+		}
+    .success_message {
+			display: none;
+			background: green;
+			height: 40px;
+			left: 40px;
+			line-height: 40px;
+			text-align: center;
+			color: #fff;
+			font-weight: 600;
+      margin-top: 1.5rem;
+		}
+	</style>
+  <meta name="viewport" content="width=device-width">
+  <title>Rising C Suites Consultant Form</title>
+
+
+
+</head>
+
+<body onload="javascript: redirect();">
+  <script src="script.js"></script>
+<div class="risicsuitmain">
+  <div class="risiindex">
+  <img class="center" src="risingcsuites.png" alt="Rising C Suites" width="500" height="475">
+
+ <div class="risicsuithtag">
+   <h1 >Rising C-Suites Free Intro Meeting Registration</h1>
+   </div>
+
+
+  <h2 style="font-size: 22px"> Hello, glad to hear you are interested in our services! Please fill out the
+    following form to schedule a free introductory meeting with Aarav Goswami, the Founder and CEO of Rising C-Suites, and Darsh Shah, the Co-Founder and COO of Rising C-Suites. We look forward to
+    learning more about your organization and how we can help you achieve your goals.
+  </h2>
+
+  <div class="success_message">Success message here</div>
+  <div class="findepagebtn">
+    <!-- <button class="button" formaction="">Back</button> -->
+    <form action="form2.html">
+
+      
+      <button class="button" formaction="form2.html">NEXT</button>
+
+      <!-- <button onClick = "slide('next')">Next! >></button>  -->
+      <!-- <button onclick="window.location.href = 'form2.html';">Next!</button> -->
+
+
+
+      <!-- https://medium.com/@mignunez/how-to-create-a-slide-transition-between-separate-pages-with-html-css-and-javascript-bb7a14393d1 -->
+      <!-- https://www.scaler.com/topics/how-to-make-a-button-link-to-another-page-in-html/ -->
+      <!-- https://www.geeksforgeeks.org/how-to-send-an-email-from-javascript/ -->
+    </form>
+  </div>
+  </div>
+</div>
+
+</body>
+<script>
+  if (localStorage.getItem("message") != undefined) {
+    const message=document.querySelector(".success_message");
+    message.style.display="block";
+    message.innerHTML = localStorage.getItem("message");
+
+    setTimeout(()=>{
+      localStorage.removeItem("message");
+      message.style.display="none";
+      
+    },4000)
+  }
+</script>
+
+</html>

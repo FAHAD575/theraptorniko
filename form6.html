@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+	<link rel = "stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width">
+  <title>Rising C Suites Consultant Form</title>
+	
+	<style>
+        .success_message {
+			display: none;
+			background: green;
+			/* height: 40px; */
+			left: 40px;
+			line-height: 40px;
+			text-align: center;
+			color: #fff;
+			font-weight: 600;
+      margin-top: 1.5rem;
+      width: fit-content;
+      margin: auto;
+      padding: 1rem;
+		}
+  </style>
+	
+</head>
+
+<body>
+  <script src="script.js"></script>
+  
+ <div class="risiindex">
+  <img class="center" src="risingcsuites.png" alt="Rising C Suites" width="500" height="475">
+
+ <div class="risicsuithtag">
+   <h1>Thank you for your submission, and we will be in touch.</h1>
+   </div>
+   <div class="success_message">Success message here</div>
+
+  </div>
+
+
+
+  <script>
+    if (localStorage.getItem("message") != undefined) {
+      const message=document.querySelector(".success_message");
+      message.style.display="block";
+      message.innerHTML = localStorage.getItem("message");
+  
+      setTimeout(()=>{
+        localStorage.removeItem("message");
+        message.style.display="none";        
+      },4000)
+    }
+  </script>
+</body>
